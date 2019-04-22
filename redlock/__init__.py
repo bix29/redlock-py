@@ -17,7 +17,7 @@ except NameError:
 
 
 Lock = namedtuple("Lock", ("validity", "resource", "key"))
-
+###B1: 命名元组
 
 class CannotObtainLock(Exception):
     pass
@@ -60,7 +60,7 @@ class Redlock(object):
                 self.servers.append(server)
             except Exception as e:
                 raise Warning(str(e))
-        self.quorum = (len(connection_list) // 2) + 1
+        self.quorum = (len(connection_list) // 2) + 1  ##B1：//取整除
 
         if len(self.servers) < self.quorum:
             raise CannotObtainLock(
